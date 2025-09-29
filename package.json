@@ -1,0 +1,40 @@
+{
+  "name": "weatherguard",
+  "version": "1.0.0",
+  "description": "Blockchain-powered extreme weather protection system",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run frontend:dev\" \"npm run backend:dev\" \"npm run blockchain:dev\"",
+    "frontend:dev": "cd frontend && npm start",
+    "backend:dev": "cd backend && uvicorn main:app --reload --port 8000",
+    "blockchain:dev": "cd blockchain && npx hardhat node",
+    "build": "npm run frontend:build && npm run backend:build",
+    "frontend:build": "cd frontend && npm run build",
+    "backend:build": "cd backend && python -m build",
+    "test": "npm run frontend:test && npm run backend:test && npm run blockchain:test",
+    "frontend:test": "cd frontend && npm test",
+    "backend:test": "cd backend && pytest",
+    "blockchain:test": "cd blockchain && npx hardhat test",
+    "deploy:contracts": "cd blockchain && npx hardhat run scripts/deploy.js --network localhost",
+    "setup": "npm run install:all && npm run setup:env",
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && pip install -r requirements.txt && cd ../blockchain && npm install",
+    "setup:env": "cp .env.example .env"
+  },
+  "keywords": [
+    "blockchain",
+    "weather",
+    "ai",
+    "llm",
+    "prediction",
+    "insurance",
+    "climate"
+  ],
+  "author": "WeatherGuard Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  }
+}
